@@ -5,6 +5,9 @@ using Penguin.Configuration.Abstractions;
 
 namespace Penguin.Configuration
 {
+    /// <summary>
+    /// Wraps a dictionary (and optional connection string representation) so it can be used as a source of configurations
+    /// </summary>
     public class DictionaryProvider : IProvideConfigurations
     {
         /// <summary>

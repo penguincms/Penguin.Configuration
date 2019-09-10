@@ -44,6 +44,11 @@
             <param name="ConnectionStringName">The name of the connection string to return</param>
             <returns>The value of the connection string</returns>
         </member>
+        <member name="T:Penguin.Configuration.DictionaryProvider">
+            <summary>
+            Wraps a dictionary (and optional connection string representation) so it can be used as a source of configurations
+            </summary>
+        </member>
         <member name="P:Penguin.Configuration.DictionaryProvider.AllConfigurations">
             <summary>
             The underlying configuration source
