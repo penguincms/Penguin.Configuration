@@ -10,8 +10,6 @@ namespace Penguin.Configuration
     /// </summary>
     public class JsonProvider : IProvideConfigurations
     {
-        #region Properties
-
         /// <summary>
         /// Returns a dictionary of all configuraitons found in the IConfiguration
         /// </summary>
@@ -21,7 +19,7 @@ namespace Penguin.Configuration
             {
                 Dictionary<string, string> toReturn = new Dictionary<string, string>();
 
-                foreach (IConfigurationSection section in this.Configuration.GetSection(AppSettingsSectionName).GetChildren())
+                foreach (IConfigurationSection section in this.SourceConfiguration.GetSection(AppSettingsSectionName).GetChildren())
                 {
                     toReturn.Add(section.Key, section.Value);
                 }
@@ -39,7 +37,7 @@ namespace Penguin.Configuration
             {
                 Dictionary<string, string> toReturn = new Dictionary<string, string>();
 
-                foreach (IConfigurationSection section in this.Configuration.GetSection(ConnectionStringsSectionName).GetChildren())
+                foreach (IConfigurationSection section in this.SourceConfiguration.GetSection(ConnectionStringsSectionName).GetChildren())
                 {
                     toReturn.Add(section.Key, section.Value);
                 }
@@ -56,16 +54,12 @@ namespace Penguin.Configuration
         /// <summary>
         /// The IConfiguration used when creating this provider
         /// </summary>
-        public IConfiguration Configuration { get; protected set; }
+        public IConfiguration SourceConfiguration { get; protected set; }
 
         /// <summary>
         /// The name of the json section to use for connection strings
         /// </summary>
         public string ConnectionStringsSectionName { get; protected set; } = "ConnectionStrings";
-
-        #endregion Properties
-
-        #region Constructors
 
         /// <summary>
         /// Creates a new instance of this configuration provider
@@ -74,13 +68,9 @@ namespace Penguin.Configuration
         /// <param name="appSettingsSectionName">The json name of the default application settings section</param>
         public JsonProvider(IConfiguration provider, string appSettingsSectionName = "appSettings")
         {
-            Configuration = provider;
+            SourceConfiguration = provider;
             AppSettingsSectionName = appSettingsSectionName;
         }
-
-        #endregion Constructors
-
-        #region Methods
 
         /// <summary>
         /// Returns the value of a configuration
@@ -115,7 +105,5 @@ namespace Penguin.Configuration
                 return null;
             }
         }
-
-        #endregion Methods
     }
 }

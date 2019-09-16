@@ -12,8 +12,6 @@ namespace Penguin.Configuration
     /// </summary>
     public class XmlProvider : IProvideConfigurations
     {
-        #region Properties
-
         /// <summary>
         /// returns a dictionary of all configurations found in this file
         /// </summary>
@@ -23,10 +21,6 @@ namespace Penguin.Configuration
         /// returns a list of all connection strings found in this file
         /// </summary>
         public Dictionary<string, string> AllConnectionStrings => ConnectionStrings;
-
-        #endregion Properties
-
-        #region Constructors
 
         /// <summary>
         /// Creates a new instance of this provider
@@ -116,10 +110,6 @@ namespace Penguin.Configuration
             }
         }
 
-        #endregion Constructors
-
-        #region Methods
-
         /// <summary>
         /// Gets a configuration by the specified name
         /// </summary>
@@ -153,8 +143,6 @@ namespace Penguin.Configuration
                 return null;
             }
         }
-
-        #endregion Methods
 
         private Dictionary<string, string> AppSettings { get; set; } = new Dictionary<string, string>();
         private Dictionary<string, string> ConnectionStrings { get; set; } = new Dictionary<string, string>();

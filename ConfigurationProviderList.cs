@@ -8,8 +8,6 @@ namespace Penguin.Configuration
     /// </summary>
     public class ConfigurationProviderList : IProvideConfigurations
     {
-        #region Properties
-
         /// <summary>
         /// Returns a dictionary representing all distinct configurations with value determined by child order
         /// </summary>
@@ -61,11 +59,7 @@ namespace Penguin.Configuration
         /// <summary>
         /// The child configurations used when constructing this instance
         /// </summary>
-        public IProvideConfigurations[] Providers { get; protected set; }
-
-        #endregion Properties
-
-        #region Constructors
+        public IEnumerable<IProvideConfigurations> Providers { get; protected set; }
 
         /// <summary>
         /// Constructs a new instance of this configuration provider
@@ -75,10 +69,6 @@ namespace Penguin.Configuration
         {
             Providers = providers;
         }
-
-        #endregion Constructors
-
-        #region Methods
 
         /// <summary>
         /// Returns the first non-null value of a configuration from the list of children
@@ -109,12 +99,9 @@ namespace Penguin.Configuration
         /// <returns>The value of the connection string</returns>
         public string GetConnectionString(string ConnectionStringName)
         {
-            string ConnectionString = null;
-
             foreach (IProvideConfigurations provider in Providers)
             {
-                ConnectionString = provider.GetConnectionString(ConnectionStringName);
-
+                string ConnectionString = provider.GetConnectionString(ConnectionStringName);
                 if (ConnectionString != null)
                 {
                     return ConnectionString;
@@ -123,7 +110,5 @@ namespace Penguin.Configuration
 
             return null;
         }
-
-        #endregion Methods
     }
 }

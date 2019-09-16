@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Penguin.Configuration.Abstractions;
 using System.Collections.Generic;
-using System.Text;
-using Penguin.Configuration.Abstractions;
 
 namespace Penguin.Configuration
 {
@@ -13,12 +11,12 @@ namespace Penguin.Configuration
         /// <summary>
         /// The underlying configuration source
         /// </summary>
-        public Dictionary<string, string> AllConfigurations { get; protected set; }
+        public Dictionary<string, string> AllConfigurations { get; }
 
         /// <summary>
         /// The underlying connection string source
         /// </summary>
-        public Dictionary<string, string> AllConnectionStrings { get; protected set; }
+        public Dictionary<string, string> AllConnectionStrings { get; }
 
         /// <summary>
         /// If true, will throw an error instead of returning null on a missing key
@@ -46,7 +44,7 @@ namespace Penguin.Configuration
         public DictionaryProvider(Dictionary<string, string> Configurations, bool errorOnMissingKey = false)
         {
             AllConfigurations = Configurations;
-            AllConnectionStrings =  new Dictionary<string, string>();
+            AllConnectionStrings = new Dictionary<string, string>();
             ErrorOnMissingKey = errorOnMissingKey;
         }
 
@@ -57,13 +55,16 @@ namespace Penguin.Configuration
         /// <returns>The configuration value</returns>
         public string GetConfiguration(string Key)
         {
-            if(AllConfigurations.ContainsKey(Key))
+            if (AllConfigurations.ContainsKey(Key))
             {
                 return AllConfigurations[Key];
-            } else if (ErrorOnMissingKey)
+            }
+            else if (ErrorOnMissingKey)
             {
                 throw new KeyNotFoundException($"The requested configuration {Key} was not found in the underlying dictionary");
-            } else {
+            }
+            else
+            {
                 return null;
             }
         }
