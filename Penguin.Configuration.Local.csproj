@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.0.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
-    <ProjectReference Include="..\Penguin.Configuration.Abstractions\Penguin.Configuration.Abstractions.csproj" />
-    <ProjectReference Include="..\Penguin.Extensions.String\Penguin.Extensions.String.csproj" />
+    <ProjectReference Include="..\Penguin.Configuration.Abstractions\Penguin.Configuration.Abstractions.Local.csproj" />
+    <ProjectReference Include="..\Penguin.Extensions.String\Penguin.Extensions.String.Local.csproj" />
   </ItemGroup>
 </Project>
