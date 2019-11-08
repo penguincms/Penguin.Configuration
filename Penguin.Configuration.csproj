@@ -11,6 +11,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.0.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.6.0" />
-    <PackageReference Include="Penguin.Configuration.Abstractions" Version="3.0.2-T9M3AAF" />
+    <PackageReference Include="Penguin.Configuration.Abstractions" Version="3.0.2-T9MJL4F" />
   </ItemGroup>
 </Project>
