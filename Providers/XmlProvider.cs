@@ -15,12 +15,12 @@ namespace Penguin.Configuration.Providers
         /// <summary>
         /// returns a dictionary of all configurations found in this file
         /// </summary>
-        public Dictionary<string, string> AllConfigurations => AppSettings;
+        public Dictionary<string, string> AllConfigurations => this.AppSettings;
 
         /// <summary>
         /// returns a list of all connection strings found in this file
         /// </summary>
-        public Dictionary<string, string> AllConnectionStrings => ConnectionStrings;
+        public Dictionary<string, string> AllConnectionStrings => this.ConnectionStrings;
 
         bool IProvideConfigurations.CanWrite => false;
         private Dictionary<string, string> AppSettings { get; set; } = new Dictionary<string, string>();
@@ -53,18 +53,18 @@ namespace Penguin.Configuration.Providers
 
                 foreach (ConnectionStringSettings connectionString in configuration.ConnectionStrings.ConnectionStrings)
                 {
-                    ConnectionStrings.Add(connectionString.Name, connectionString.ConnectionString);
+                    this.ConnectionStrings.Add(connectionString.Name, connectionString.ConnectionString);
                 }
 
                 foreach (string settingKey in configuration.AppSettings.Settings.AllKeys)
                 {
-                    AppSettings.Add(settingKey, configuration.AppSettings.Settings[settingKey].Value);
+                    this.AppSettings.Add(settingKey, configuration.AppSettings.Settings[settingKey].Value);
                 }
             }
             catch (Exception)
             {
-                ConnectionStrings.Clear();
-                AppSettings.Clear();
+                this.ConnectionStrings.Clear();
+                this.AppSettings.Clear();
 
                 XmlDocument doc = new XmlDocument();
                 doc.Load(Path);
@@ -76,9 +76,9 @@ namespace Penguin.Configuration.Providers
                         string Name = connection?.Attributes != null ? connection.Attributes["name"]?.Value : null;
                         string Value = connection?.Attributes != null ? connection.Attributes["connectionString"]?.Value : null;
 
-                        if (Name != null && Value != null && !ConnectionStrings.ContainsKey(Name))
+                        if (Name != null && Value != null && !this.ConnectionStrings.ContainsKey(Name))
                         {
-                            ConnectionStrings.Add(Name, Value);
+                            this.ConnectionStrings.Add(Name, Value);
                         }
                     }
                 }
@@ -90,9 +90,9 @@ namespace Penguin.Configuration.Providers
                         string Name = setting?.Attributes != null ? setting.Attributes["key"]?.Value : null;
                         string Value = setting?.Attributes != null ? setting.Attributes["value"]?.Value : null;
 
-                        if (Name != null && Value != null && !AppSettings.ContainsKey(Name))
+                        if (Name != null && Value != null && !this.AppSettings.ContainsKey(Name))
                         {
-                            AppSettings.Add(Name, Value);
+                            this.AppSettings.Add(Name, Value);
                         }
                     }
                 }
@@ -106,12 +106,12 @@ namespace Penguin.Configuration.Providers
         {
             foreach (ConnectionStringSettings connectionString in ConfigurationManager.ConnectionStrings)
             {
-                ConnectionStrings.Add(connectionString.Name, connectionString.ConnectionString);
+                this.ConnectionStrings.Add(connectionString.Name, connectionString.ConnectionString);
             }
 
             foreach (string settingKey in ConfigurationManager.AppSettings.AllKeys)
             {
-                AppSettings.Add(settingKey, ConfigurationManager.AppSettings[settingKey]);
+                this.AppSettings.Add(settingKey, ConfigurationManager.AppSettings[settingKey]);
             }
         }
 
@@ -122,9 +122,9 @@ namespace Penguin.Configuration.Providers
         /// <returns>The value (or null) of the configuration</returns>
         public string GetConfiguration(string Key)
         {
-            if (AppSettings.ContainsKey(Key))
+            if (this.AppSettings.ContainsKey(Key))
             {
-                return AppSettings[Key];
+                return this.AppSettings[Key];
             }
             else
             {
@@ -139,9 +139,9 @@ namespace Penguin.Configuration.Providers
         /// <returns>The value (or null) of the connection string</returns>
         public string GetConnectionString(string Name)
         {
-            if (ConnectionStrings.ContainsKey(Name))
+            if (this.ConnectionStrings.ContainsKey(Name))
             {
-                return ConnectionStrings[Name];
+                return this.ConnectionStrings[Name];
             }
             else
             {
@@ -149,6 +149,9 @@ namespace Penguin.Configuration.Providers
             }
         }
 
-        bool IProvideConfigurations.SetConfiguration(string Name, string Value) => false;
+        bool IProvideConfigurations.SetConfiguration(string Name, string Value)
+        {
+            return false;
+        }
     }
 }

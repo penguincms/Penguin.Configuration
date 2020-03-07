@@ -18,7 +18,7 @@ namespace Penguin.Configuration.Providers
             {
                 Dictionary<string, string> toReturn = new Dictionary<string, string>();
 
-                foreach (IProvideConfigurations provider in Providers)
+                foreach (IProvideConfigurations provider in this.Providers)
                 {
                     foreach (KeyValuePair<string, string> config in provider.AllConfigurations)
                     {
@@ -42,7 +42,7 @@ namespace Penguin.Configuration.Providers
             {
                 Dictionary<string, string> toReturn = new Dictionary<string, string>();
 
-                foreach (IProvideConfigurations provider in Providers)
+                foreach (IProvideConfigurations provider in this.Providers)
                 {
                     foreach (KeyValuePair<string, string> config in provider.AllConnectionStrings)
                     {
@@ -70,7 +70,7 @@ namespace Penguin.Configuration.Providers
         /// <param name="providers">An ordered list of children to use when constructing this object, with the most important first</param>
         public ConfigurationProviderList(params IProvideConfigurations[] providers)
         {
-            Providers = providers;
+            this.Providers = providers;
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace Penguin.Configuration.Providers
         {
             string toReturn = null;
 
-            foreach (IProvideConfigurations provider in Providers)
+            foreach (IProvideConfigurations provider in this.Providers)
             {
                 toReturn = provider.GetConfiguration(Key);
 
@@ -102,7 +102,7 @@ namespace Penguin.Configuration.Providers
         /// <returns>The value of the connection string</returns>
         public string GetConnectionString(string ConnectionStringName)
         {
-            foreach (IProvideConfigurations provider in Providers)
+            foreach (IProvideConfigurations provider in this.Providers)
             {
                 string ConnectionString = provider.GetConnectionString(ConnectionStringName);
                 if (ConnectionString != null)
@@ -118,7 +118,7 @@ namespace Penguin.Configuration.Providers
         {
             bool toReturn = false;
 
-            foreach (IProvideConfigurations pc in Providers)
+            foreach (IProvideConfigurations pc in this.Providers)
             {
                 if (pc.CanWrite && pc.SetConfiguration(Name, Value))
                 {

@@ -33,9 +33,9 @@ namespace Penguin.Configuration.Providers
         /// <param name="errorOnMissingKey">If true, will throw an error instead of returning null on a missing key</param>
         public DictionaryProvider(Dictionary<string, string> Configurations, Dictionary<string, string> ConnectionStrings = null, bool errorOnMissingKey = false)
         {
-            AllConfigurations = Configurations;
-            AllConnectionStrings = ConnectionStrings ?? new Dictionary<string, string>();
-            ErrorOnMissingKey = errorOnMissingKey;
+            this.AllConfigurations = Configurations;
+            this.AllConnectionStrings = ConnectionStrings ?? new Dictionary<string, string>();
+            this.ErrorOnMissingKey = errorOnMissingKey;
         }
 
         /// <summary>
@@ -45,9 +45,9 @@ namespace Penguin.Configuration.Providers
         /// <param name="errorOnMissingKey">If true, will throw an error instead of returning null on a missing key</param>
         public DictionaryProvider(Dictionary<string, string> Configurations, bool errorOnMissingKey = false)
         {
-            AllConfigurations = Configurations;
-            AllConnectionStrings = new Dictionary<string, string>();
-            ErrorOnMissingKey = errorOnMissingKey;
+            this.AllConfigurations = Configurations;
+            this.AllConnectionStrings = new Dictionary<string, string>();
+            this.ErrorOnMissingKey = errorOnMissingKey;
         }
 
         /// <summary>
@@ -57,11 +57,11 @@ namespace Penguin.Configuration.Providers
         /// <returns>The configuration value</returns>
         public string GetConfiguration(string Key)
         {
-            if (AllConfigurations.ContainsKey(Key))
+            if (this.AllConfigurations.ContainsKey(Key))
             {
-                return AllConfigurations[Key];
+                return this.AllConfigurations[Key];
             }
-            else if (ErrorOnMissingKey)
+            else if (this.ErrorOnMissingKey)
             {
                 throw new KeyNotFoundException($"The requested configuration {Key} was not found in the underlying dictionary");
             }
@@ -78,11 +78,11 @@ namespace Penguin.Configuration.Providers
         /// <returns>The connection string value value</returns>
         public string GetConnectionString(string Name)
         {
-            if (AllConnectionStrings.ContainsKey(Name))
+            if (this.AllConnectionStrings.ContainsKey(Name))
             {
-                return AllConnectionStrings[Name];
+                return this.AllConnectionStrings[Name];
             }
-            else if (ErrorOnMissingKey)
+            else if (this.ErrorOnMissingKey)
             {
                 throw new KeyNotFoundException($"The requested connection string {Name} was not found in the underlying dictionary");
             }
