@@ -44,6 +44,14 @@
             <param name="ConnectionStringName">The name of the connection string to return</param>
             <returns>The value of the connection string</returns>
         </member>
+        <member name="M:Penguin.Configuration.Providers.ConfigurationProviderList.SetConfiguration(System.String,System.String)">
+            <summary>
+            Searches the included providers for a writable configuration, and saves the value in the first writable provider
+            </summary>
+            <param name="Name">The configuration name to update</param>
+            <param name="Value">The new value</param>
+            <returns>True if a writable provider was found to persist the value</returns>
+        </member>
         <member name="T:Penguin.Configuration.Providers.DictionaryProvider">
             <summary>
             Wraps a dictionary (and optional connection string representation) so it can be used as a source of configurations

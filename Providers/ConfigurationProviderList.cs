@@ -1,4 +1,5 @@
-﻿using Penguin.Configuration.Abstractions.Interfaces;
+﻿using Penguin.Configuration.Abstractions.Extensions;
+using Penguin.Configuration.Abstractions.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +8,7 @@ namespace Penguin.Configuration.Providers
     /// <summary>
     /// Concats an ordered list of configuration providers into a single configuration provider with precidence determined by the order the children are sorted in when constructing
     /// </summary>
-    public class ConfigurationProviderList : IProvideConfigurations
+    public class ConfigurationProviderList : IProvideConfigurations, IProvideConfigurationsCollection
     {
         /// <summary>
         /// Returns a dictionary representing all distinct configurations with value determined by child order
@@ -114,19 +115,12 @@ namespace Penguin.Configuration.Providers
             return null;
         }
 
-        public bool SetConfiguration(string Name, string Value)
-        {
-            bool toReturn = false;
-
-            foreach (IProvideConfigurations pc in this.Providers)
-            {
-                if (pc.CanWrite && pc.SetConfiguration(Name, Value))
-                {
-                    toReturn = true;
-                }
-            }
-
-            return toReturn;
-        }
+        /// <summary>
+        /// Searches the included providers for a writable configuration, and saves the value in the first writable provider
+        /// </summary>
+        /// <param name="Name">The configuration name to update</param>
+        /// <param name="Value">The new value</param>
+        /// <returns>True if a writable provider was found to persist the value</returns>
+        public bool SetConfiguration(string Name, string Value) => IProvideConfigurationsCollectionExtensions.SetConfiguration(this, Name, Value);
     }
 }
