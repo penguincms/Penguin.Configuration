@@ -121,9 +121,6 @@ namespace Penguin.Configuration.Providers
         /// <param name="Name">The configuration name to update</param>
         /// <param name="Value">The new value</param>
         /// <returns>True if a writable provider was found to persist the value</returns>
-        public bool SetConfiguration(string Name, string Value)
-        {
-            return IProvideConfigurationsCollectionExtensions.SetConfiguration(this, Name, Value);
-        }
+        public bool SetConfiguration(string Name, string Value) => IProvideConfigurationsCollectionExtensions.SetConfiguration(this, Name, Value);
     }
 }

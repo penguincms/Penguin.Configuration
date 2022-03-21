@@ -108,9 +108,6 @@ namespace Penguin.Configuration.Providers
             }
         }
 
-        bool IProvideConfigurations.SetConfiguration(string Name, string Value)
-        {
-            return false;
-        }
+        bool IProvideConfigurations.SetConfiguration(string Name, string Value) => false;
     }
 }
