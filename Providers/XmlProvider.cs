@@ -23,6 +23,7 @@ namespace Penguin.Configuration.Providers
         public Dictionary<string, string> AllConnectionStrings => ConnectionStrings;
 
         bool IProvideConfigurations.CanWrite => false;
+
         private Dictionary<string, string> AppSettings { get; set; } = new Dictionary<string, string>();
 
         private Dictionary<string, string> ConnectionStrings { get; set; } = new Dictionary<string, string>();
@@ -134,6 +135,7 @@ namespace Penguin.Configuration.Providers
         {
             return ConnectionStrings.TryGetValue(Name, out string value) ? value : null;
         }
+
         /// <inheritdoc/>
 
         public bool SetConfiguration(string Name, string Value)

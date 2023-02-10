@@ -93,6 +93,7 @@ namespace Penguin.Configuration.Providers
         {
             return AllConnectionStrings.TryGetValue(Name, out string value) ? value : null;
         }
+
         /// <inheritdoc/>
 
         public bool SetConfiguration(string Name, string Value)

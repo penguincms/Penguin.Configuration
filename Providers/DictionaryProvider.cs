@@ -77,6 +77,7 @@ namespace Penguin.Configuration.Providers
                     ? throw new KeyNotFoundException($"The requested connection string {Name} was not found in the underlying dictionary")
                     : null;
         }
+
         /// <inheritdoc/>
 
         public bool SetConfiguration(string Name, string Value)

@@ -57,6 +57,7 @@ namespace Penguin.Configuration.Providers
                 return toReturn;
             }
         }
+
         /// <inheritdoc/>
 
         public bool CanWrite => Providers.Any(p => p.CanWrite);
