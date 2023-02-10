@@ -81,9 +81,9 @@ namespace Penguin.Configuration.Providers
         /// <returns>The value (or null) of the requested configuration</returns>
         public string GetConfiguration(string Key)
         {
-            if (this.AllConfigurations.ContainsKey(Key))
+            if (this.AllConfigurations.TryGetValue(Key, out string value))
             {
-                return this.AllConfigurations[Key];
+                return value;
             }
             else
             {
@@ -98,9 +98,9 @@ namespace Penguin.Configuration.Providers
         /// <returns>The value (or null) of the requested connection string</returns>
         public string GetConnectionString(string Name)
         {
-            if (this.AllConnectionStrings.ContainsKey(Name))
+            if (this.AllConnectionStrings.TryGetValue(Name, out string value))
             {
-                return this.AllConnectionStrings[Name];
+                return value;
             }
             else
             {

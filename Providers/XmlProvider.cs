@@ -139,9 +139,9 @@ namespace Penguin.Configuration.Providers
         /// <returns>The value (or null) of the connection string</returns>
         public string GetConnectionString(string Name)
         {
-            if (this.ConnectionStrings.ContainsKey(Name))
+            if (this.ConnectionStrings.TryGetValue(Name, out string value))
             {
-                return this.ConnectionStrings[Name];
+                return value;
             }
             else
             {

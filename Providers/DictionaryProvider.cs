@@ -78,9 +78,9 @@ namespace Penguin.Configuration.Providers
         /// <returns>The connection string value value</returns>
         public string GetConnectionString(string Name)
         {
-            if (this.AllConnectionStrings.ContainsKey(Name))
+            if (this.AllConnectionStrings.TryGetValue(Name, out string value))
             {
-                return this.AllConnectionStrings[Name];
+                return value;
             }
             else if (this.ErrorOnMissingKey)
             {
