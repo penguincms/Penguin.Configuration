@@ -17,9 +17,9 @@ namespace Penguin.Configuration.Providers
         {
             get
             {
-                Dictionary<string, string> toReturn = new Dictionary<string, string>();
+                Dictionary<string, string> toReturn = new();
 
-                foreach (IProvideConfigurations provider in this.Providers)
+                foreach (IProvideConfigurations provider in Providers)
                 {
                     foreach (KeyValuePair<string, string> config in provider.AllConfigurations)
                     {
@@ -41,9 +41,9 @@ namespace Penguin.Configuration.Providers
         {
             get
             {
-                Dictionary<string, string> toReturn = new Dictionary<string, string>();
+                Dictionary<string, string> toReturn = new();
 
-                foreach (IProvideConfigurations provider in this.Providers)
+                foreach (IProvideConfigurations provider in Providers)
                 {
                     foreach (KeyValuePair<string, string> config in provider.AllConnectionStrings)
                     {
@@ -57,8 +57,9 @@ namespace Penguin.Configuration.Providers
                 return toReturn;
             }
         }
+        /// <inheritdoc/>
 
-        public bool CanWrite => this.Providers.Any(p => p.CanWrite);
+        public bool CanWrite => Providers.Any(p => p.CanWrite);
 
         /// <summary>
         /// The child configurations used when constructing this instance
@@ -71,7 +72,7 @@ namespace Penguin.Configuration.Providers
         /// <param name="providers">An ordered list of children to use when constructing this object, with the most important first</param>
         public ConfigurationProviderList(params IProvideConfigurations[] providers)
         {
-            this.Providers = providers;
+            Providers = providers;
         }
 
         /// <summary>
@@ -83,7 +84,7 @@ namespace Penguin.Configuration.Providers
         {
             string toReturn = null;
 
-            foreach (IProvideConfigurations provider in this.Providers)
+            foreach (IProvideConfigurations provider in Providers)
             {
                 toReturn = provider.GetConfiguration(Key);
 
@@ -99,13 +100,13 @@ namespace Penguin.Configuration.Providers
         /// <summary>
         /// Returns the first non-null value of a connection string from the list of children
         /// </summary>
-        /// <param name="ConnectionStringName">The name of the connection string to return</param>
+        /// <param name="Name">The name of the connection string to return</param>
         /// <returns>The value of the connection string</returns>
-        public string GetConnectionString(string ConnectionStringName)
+        public string GetConnectionString(string Name)
         {
-            foreach (IProvideConfigurations provider in this.Providers)
+            foreach (IProvideConfigurations provider in Providers)
             {
-                string ConnectionString = provider.GetConnectionString(ConnectionStringName);
+                string ConnectionString = provider.GetConnectionString(Name);
                 if (ConnectionString != null)
                 {
                     return ConnectionString;

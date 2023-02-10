@@ -17,9 +17,9 @@ namespace Penguin.Configuration.Providers
         {
             get
             {
-                Dictionary<string, string> toReturn = new Dictionary<string, string>();
+                Dictionary<string, string> toReturn = new();
 
-                foreach (IConfigurationSection section in this.SourceConfiguration.GetSection(this.AppSettingsSectionName).GetChildren())
+                foreach (IConfigurationSection section in SourceConfiguration.GetSection(AppSettingsSectionName).GetChildren())
                 {
                     toReturn.Add(section.Key, section.Value);
                 }
@@ -35,9 +35,9 @@ namespace Penguin.Configuration.Providers
         {
             get
             {
-                Dictionary<string, string> toReturn = new Dictionary<string, string>();
+                Dictionary<string, string> toReturn = new();
 
-                foreach (IConfigurationSection section in this.SourceConfiguration.GetSection(this.ConnectionStringsSectionName).GetChildren())
+                foreach (IConfigurationSection section in SourceConfiguration.GetSection(ConnectionStringsSectionName).GetChildren())
                 {
                     toReturn.Add(section.Key, section.Value);
                 }
@@ -70,8 +70,8 @@ namespace Penguin.Configuration.Providers
         /// <param name="appSettingsSectionName">The json name of the default application settings section</param>
         public JsonProvider(IConfiguration provider, string appSettingsSectionName = "appSettings")
         {
-            this.SourceConfiguration = provider;
-            this.AppSettingsSectionName = appSettingsSectionName;
+            SourceConfiguration = provider;
+            AppSettingsSectionName = appSettingsSectionName;
         }
 
         /// <summary>
@@ -81,14 +81,7 @@ namespace Penguin.Configuration.Providers
         /// <returns>The value (or null) of the requested configuration</returns>
         public string GetConfiguration(string Key)
         {
-            if (this.AllConfigurations.TryGetValue(Key, out string value))
-            {
-                return value;
-            }
-            else
-            {
-                return null;
-            }
+            return AllConfigurations.TryGetValue(Key, out string value) ? value : null;
         }
 
         /// <summary>
@@ -98,17 +91,11 @@ namespace Penguin.Configuration.Providers
         /// <returns>The value (or null) of the requested connection string</returns>
         public string GetConnectionString(string Name)
         {
-            if (this.AllConnectionStrings.TryGetValue(Name, out string value))
-            {
-                return value;
-            }
-            else
-            {
-                return null;
-            }
+            return AllConnectionStrings.TryGetValue(Name, out string value) ? value : null;
         }
+        /// <inheritdoc/>
 
-        bool IProvideConfigurations.SetConfiguration(string Name, string Value)
+        public bool SetConfiguration(string Name, string Value)
         {
             return false;
         }

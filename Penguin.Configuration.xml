@@ -19,6 +19,9 @@
             Returns a dictionary representing all distinct connection strings with value determined by child order
             </summary>
         </member>
+        <member name="P:Penguin.Configuration.Providers.ConfigurationProviderList.CanWrite">
+            <inheritdoc/>
+        </member>
         <member name="P:Penguin.Configuration.Providers.ConfigurationProviderList.Providers">
             <summary>
             The child configurations used when constructing this instance
@@ -41,7 +44,7 @@
             <summary>
             Returns the first non-null value of a connection string from the list of children
             </summary>
-            <param name="ConnectionStringName">The name of the connection string to return</param>
+            <param name="Name">The name of the connection string to return</param>
             <returns>The value of the connection string</returns>
         </member>
         <member name="M:Penguin.Configuration.Providers.ConfigurationProviderList.SetConfiguration(System.String,System.String)">
@@ -101,6 +104,9 @@
             <param name="Name">The connection string name</param>
             <returns>The connection string value value</returns>
         </member>
+        <member name="M:Penguin.Configuration.Providers.DictionaryProvider.SetConfiguration(System.String,System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:Penguin.Configuration.Providers.JsonProvider">
             <summary>
             Provides configurations from the Microsoft IConfiguration class used by .net core applications
@@ -152,6 +158,9 @@
             <param name="Name">The name of the connection string to get</param>
             <returns>The value (or null) of the requested connection string</returns>
         </member>
+        <member name="M:Penguin.Configuration.Providers.JsonProvider.SetConfiguration(System.String,System.String)">
+            <inheritdoc/>
+        </member>
         <member name="T:Penguin.Configuration.Providers.XmlProvider">
             <summary>
             Provides access to a web.config or app.config file for configurations
@@ -192,6 +201,9 @@
             </summary>
             <param name="Name">The name of the connection string</param>
             <returns>The value (or null) of the connection string</returns>
+        </member>
+        <member name="M:Penguin.Configuration.Providers.XmlProvider.SetConfiguration(System.String,System.String)">
+            <inheritdoc/>
         </member>
     </members>
 </doc>
