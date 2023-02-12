@@ -20,7 +20,7 @@
             </summary>
         </member>
         <member name="P:Penguin.Configuration.Providers.ConfigurationProviderList.CanWrite">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="P:Penguin.Configuration.Providers.ConfigurationProviderList.Providers">
             <summary>
@@ -105,7 +105,7 @@
             <returns>The connection string value value</returns>
         </member>
         <member name="M:Penguin.Configuration.Providers.DictionaryProvider.SetConfiguration(System.String,System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="T:Penguin.Configuration.Providers.JsonProvider">
             <summary>
@@ -159,7 +159,7 @@
             <returns>The value (or null) of the requested connection string</returns>
         </member>
         <member name="M:Penguin.Configuration.Providers.JsonProvider.SetConfiguration(System.String,System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
         <member name="T:Penguin.Configuration.Providers.XmlProvider">
             <summary>
@@ -203,7 +203,7 @@
             <returns>The value (or null) of the connection string</returns>
         </member>
         <member name="M:Penguin.Configuration.Providers.XmlProvider.SetConfiguration(System.String,System.String)">
-            <inheritdoc />
+            <inheritdoc/>
         </member>
     </members>
 </doc>
