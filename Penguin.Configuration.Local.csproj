@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1;net7.0</TargetFrameworks>
     <Version>5.0.5</Version>
-    <PackageProjectUrl>https://github.com/PenguinCms/Penguin.Configuration</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/PenguinCMS/Penguin.Configuration</PackageProjectUrl>
     <Description>Not Available</Description>
     <AssemblyName>Penguin.Configuration</AssemblyName>
     <RootNamespace>Penguin.Configuration</RootNamespace>
